@@ -5,11 +5,14 @@
                 position: absolute;
             }
             html, body {margin: 0; height: 100%; overflow: hidden}
+            body {
+            position: relative;
+            }
             #jukebox {
                 position: fixed;
-                bottom: 10%;
-                right: 10%;
-                height: 5%;
+                bottom: 90px;
+                right: 100px;
+                height: 50px;
                 z-index: 99;
             }
 
@@ -71,6 +74,8 @@
             function place_images(numImages) {
                 const height = window.innerHeight;
                 const width = window.innerWidth;
+                console.log("height is " + height);
+                console.log("width is " + width);
                 let array = Array(numImages).fill().map((_, index) => index);
                 shuffle(array)
                 console.log(array)
@@ -85,7 +90,7 @@
                     let img_x = Math.floor(Math.random() * width - img_height / 2);
                     let img_y = Math.floor(Math.random() * height - img_height / 2);
 
-                    document.body.innerHTML += `<img src="${img_src}" height="${img_height}" style="top:${img_y}; left:${img_x};">`;
+                    document.body.innerHTML += `<img src="${img_src}" height="${img_height}px" style="top:${img_y}px; left:${img_x}px;">`;
                     console.log("loaded " + (i+1) + " images");
                 }
                 console.log("finished loading images");
