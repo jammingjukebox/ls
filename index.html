@@ -31,14 +31,16 @@
                 display: none;
                 font-size: 5vw;
             }
+            
 
         </style>
     </head>
     <body>
-        <marquee id="title-marquee">HAPPY BIRTHDAY LOLA!!!</marquee>
+        <marquee id="title-marquee" width="100%">HAPPY BIRTHDAY LOLA!!!</marquee>
         <span id="intro">
         <h1>wait a sec...</h1>
         <h2>if nothing loads in 30 seconds, try refreshing the page</h2>
+        <h2>( looks best on computer :) )</h2>
         </span>
         <audio src="./media/audio/tune.wav" autostart="false" hidden="true" loop="true" id="tune" style="display:none;"></audio>
         <span id = "jukebox">
@@ -116,6 +118,7 @@
                     console.log("loaded " + (i+1) + " images");
                 }
                 console.log("finished loading images");
+                
 
             }
 
