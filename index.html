@@ -9,6 +9,7 @@
             position: relative;
             }
             #jukebox {
+                display: none;
                 position: fixed;
                 bottom: 90px;
                 right: 100px;
@@ -101,7 +102,8 @@
 
                 let maxHeight = Math.floor(height * 0.7 * 0.8);
                 let minHeight = Math.floor((height / 4) * 0.8);
-                document.getElementById("intro").style = "display:none;"
+                document.getElementById("intro").style.display = "none"
+                document.getElementById("jukebox").style.display = "inline";
                 for ( let i = 0; i < numImages; i++ ) {
                     let img_src = `./media/pics/${array[i]}.jpg`;
                     
