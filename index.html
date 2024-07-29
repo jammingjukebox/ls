@@ -40,7 +40,6 @@
         <span id="intro">
         <h1>wait a sec...</h1>
         <h2>if nothing loads in 30 seconds, try refreshing the page</h2>
-        <h2>( looks best on computer :) )</h2>
         </span>
         <audio src="./media/audio/tune.wav" autostart="false" hidden="true" loop="true" id="tune" style="display:none;"></audio>
         <span id = "jukebox">
@@ -103,20 +102,44 @@
                 shuffle(array)
                 console.log(array)
 
-                let maxHeight = Math.floor(height * 0.7 * 0.8);
-                let minHeight = Math.floor((height / 4) * 0.8);
-                document.getElementById("intro").style.display = "none"
-                document.getElementById("jukebox").style.display = "inline";
-                for ( let i = 0; i < numImages; i++ ) {
-                    let img_src = `./media/pics/${array[i]}.jpg`;
-                    
-                    let img_height = Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
-                    let img_x = Math.floor(Math.random() * width - img_height / 2);
-                    let img_y = Math.floor(Math.random() * height - img_height / 2);
+                // this code wet asf maybe it needs some refactoring
+                if(height < width) {
+                    // landscape mode
+                    console.log("landscape mode detected");
+                    let maxHeight = Math.floor(height * 0.56);
+                    let minHeight = Math.floor((height / 4) * 0.8);
+                    document.getElementById("intro").style.display = "none"
+                    document.getElementById("jukebox").style.display = "inline";
+                    for ( let i = 0; i < numImages; i++ ) {
+                        let img_src = `./media/pics/${array[i]}.jpg`;
+                        
+                        let img_height = Math.floor(Math.random() * (maxHeight - minHeight) + minHeight);
+                        let img_x = Math.floor(Math.random() * width - img_height / 2);
+                        let img_y = Math.floor(Math.random() * height - img_height / 2);
 
-                    document.body.innerHTML += `<img src="${img_src}" height="${img_height}px" style="top:${img_y}px; left:${img_x}px;">`;
-                    console.log("loaded " + (i+1) + " images");
+                        document.body.innerHTML += `<img src="${img_src}" height="${img_height}px" style="top:${img_y}px; left:${img_x}px;">`;
+                        console.log("loaded " + (i+1) + " images");
+                    }
+
+                } else {
+                    console.log("non landscape mode detected");
+                    let maxWidth = Math.floor(width * 0.56);
+                    let minWidth = Math.floor((width / 4) * 0.8);
+                    document.getElementById("intro").style.display = "none"
+                    document.getElementById("jukebox").style.display = "inline";
+                    for ( let i = 0; i < numImages; i++ ) {
+                        let img_src = `./media/pics/${array[i]}.jpg`;
+                        
+                        let img_width = Math.floor(Math.random() * (maxWidth - minWidth) + minWidth);
+                        let img_x = Math.floor(Math.random() * width - img_width / 2);
+                        let img_y = Math.floor(Math.random() * height - img_width / 2);
+
+                        document.body.innerHTML += `<img src="${img_src}" width="${img_width}px" style="top:${img_y}px; left:${img_x}px;">`;
+                        console.log("loaded " + (i+1) + " images");
+                    }
                 }
+
+                
                 console.log("finished loading images");
                 
 
