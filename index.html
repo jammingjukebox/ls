@@ -16,9 +16,28 @@
                 z-index: 99;
             }
 
+            @font-face {
+            font-family: 'Rocher';
+            src: url("./media/fonts/RocherColorGX.woff");
+            }
+
+            #title-marquee {
+                font-family: 'Rocher';
+                margin: 0px;
+                padding: 0px;
+                z-index: 99;
+                position: absolute;
+                display: none;
+            }
+
         </style>
     </head>
     <body>
+        <marquee id="title-marquee"><h1>HAPPY BIRTHDAY LOLA!!!</h1></marquee>
+        <span id="intro">
+        <h1>wait a sec...</h1>
+        <h2>if nothing loads in 30 seconds, try refreshing the page</h2>
+        </span>
         <audio src="./media/audio/tune.wav" autostart="false" hidden="true" loop="true" id="tune" style="display:none;"></audio>
         <span id = "jukebox">
             <img id="staticImage" src="./media/gifs/jammingjukebox_static.gif"  style="cursor: pointer;" onclick="toggleAnimation(); return false;">
@@ -82,7 +101,7 @@
 
                 let maxHeight = Math.floor(height * 0.7 * 0.8);
                 let minHeight = Math.floor((height / 4) * 0.8);
-                
+                document.getElementById("intro").style = "display:none;"
                 for ( let i = 0; i < numImages; i++ ) {
                     let img_src = `./media/pics/${array[i]}.jpg`;
                     
@@ -104,13 +123,15 @@
             var audio = document.getElementById("tune");
 
             if (staticImage.style.display === "none") {
-            audio.pause();
-            staticImage.style.display = "block";
-            animatedImage.style.display = "none";
+                document.getElementById("title-marquee").style.display = "none";
+                audio.pause();
+                staticImage.style.display = "block";
+                animatedImage.style.display = "none";
             } else {
-            audio.play();
-            staticImage.style.display = "none";
-            animatedImage.style.display = "block";
+                document.getElementById("title-marquee").style.display = "inline";
+                audio.play();
+                staticImage.style.display = "none";
+                animatedImage.style.display = "block";
             }
         }
         </script>
