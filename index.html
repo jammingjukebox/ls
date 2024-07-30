@@ -9,6 +9,7 @@
             position: relative;
             }
             #jukebox {
+                
                 display: none;
                 position: fixed;
                 bottom: 90px;
@@ -31,6 +32,22 @@
                 display: none;
                 font-size: 5vw;
             }
+
+            #shuffle {
+                transition: all .5s ease-in-out;
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                height: 125px;
+                z-index: 99;
+                cursor: pointer;
+            }
+
+            #shuffle:hover {
+                position: fixed;
+                transform: scale(1.15);
+                z-index: 99;
+            }
             
 
         </style>
@@ -43,9 +60,11 @@
         </span>
         <audio src="./media/audio/tune.wav" autostart="false" hidden="true" loop="true" id="tune" style="display:none;"></audio>
         <span id = "jukebox">
-            <img id="staticImage" src="./media/gifs/jammingjukebox_static.gif"  style="cursor: pointer;" onclick="toggleAnimation(); return false;">
-            <img id="animatedImage" src="./media/gifs/jammingjukebox.gif" style="display: none; cursor: pointer;" onclick="toggleAnimation(); return false;">
+            <img id="staticImage" src="./media/icons/jammingjukebox_static.gif"  style="cursor: pointer;" onclick="toggleAnimation(); return false;">
+            <img id="animatedImage" src="./media/icons/jammingjukebox.gif" style="display: none; cursor: pointer;" onclick="toggleAnimation(); return false;">
         </span>
+        <img id="shuffle" src="./media/icons/shuffle.png">
+        <span id="images-container"></span>
         <script>
 
             async function countImages() {
@@ -81,6 +100,7 @@
                 }
 
             function start() {
+                document.getElementById("images-container").innerHTML = "";
                 countImages().then((count) => {
                     console.log(`number of images: ${count}`);
                     place_images( count );
@@ -90,6 +110,8 @@
 
 
             start()
+
+            document.getElementById("shuffle").addEventListener("click", start);
 
 
 
@@ -117,7 +139,7 @@
                         let img_x = Math.floor(Math.random() * width - img_height / 2);
                         let img_y = Math.floor(Math.random() * height - img_height / 2);
 
-                        document.body.innerHTML += `<img src="${img_src}" height="${img_height}px" style="top:${img_y}px; left:${img_x}px;">`;
+                        document.getElementById("images-container").innerHTML += `<img src="${img_src}" height="${img_height}px" style="top:${img_y}px; left:${img_x}px;">`;
                         console.log("loaded " + (i+1) + " images");
                     }
 
@@ -134,7 +156,7 @@
                         let img_x = Math.floor(Math.random() * width - img_width / 2);
                         let img_y = Math.floor(Math.random() * height - img_width / 2);
 
-                        document.body.innerHTML += `<img src="${img_src}" width="${img_width}px" style="top:${img_y}px; left:${img_x}px;">`;
+                        document.getElementById("images-container").innerHTML += `<img src="${img_src}" width="${img_width}px" style="top:${img_y}px; left:${img_x}px;">`;
                         console.log("loaded " + (i+1) + " images");
                     }
                 }
