@@ -34,6 +34,7 @@
             }
 
             #shuffle {
+                display: none;
                 transition: all .5s ease-in-out;
                 position: fixed;
                 bottom: 10px;
@@ -124,14 +125,16 @@
                 shuffle(array)
                 console.log(array)
 
+                document.getElementById("intro").style.display = "none"
+                document.getElementById("jukebox").style.display = "inline";
+                document.getElementById("shuffle").style.display = "inline";
+
                 // this code wet asf maybe it needs some refactoring
                 if(height < width) {
                     // landscape mode
                     console.log("landscape mode detected");
                     let maxHeight = Math.floor(height * 0.56);
                     let minHeight = Math.floor((height / 4) * 0.8);
-                    document.getElementById("intro").style.display = "none"
-                    document.getElementById("jukebox").style.display = "inline";
                     for ( let i = 0; i < numImages; i++ ) {
                         let img_src = `./media/pics/${array[i]}.jpg`;
                         
@@ -147,8 +150,7 @@
                     console.log("non landscape mode detected");
                     let maxWidth = Math.floor(width * 0.56);
                     let minWidth = Math.floor((width / 4) * 0.8);
-                    document.getElementById("intro").style.display = "none"
-                    document.getElementById("jukebox").style.display = "inline";
+                    
                     for ( let i = 0; i < numImages; i++ ) {
                         let img_src = `./media/pics/${array[i]}.jpg`;
                         
